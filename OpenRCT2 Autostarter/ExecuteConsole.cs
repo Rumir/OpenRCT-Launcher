@@ -13,6 +13,7 @@ namespace OpenRCT2_Autostarter
     {
         //OKAY!
         //DAS IST SO GEIL
+        //TEST
 
         Boolean isRunning = true;
         String installPath,savesPath;
