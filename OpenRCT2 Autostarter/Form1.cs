@@ -92,6 +92,9 @@ namespace OpenRCT2_Autostarter
             }
         }
 
-
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
