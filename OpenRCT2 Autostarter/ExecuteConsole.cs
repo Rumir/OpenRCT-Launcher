@@ -11,6 +11,7 @@ namespace OpenRCT2_Autostarter
 {
     class ExecuteConsole
     {
+        //OKAY
         Boolean isRunning = true;
         String installPath,savesPath;
         Process x;
