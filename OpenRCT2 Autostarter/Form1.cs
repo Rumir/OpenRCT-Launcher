@@ -20,13 +20,27 @@ namespace OpenRCT2_Autostarter
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ec = new ExecuteConsole();
-            ec.OnServerStateChanges += Ec_OnServerStateChanges;
-            ec.setInstallPath(textBox1.Text);
-            ec.setSavesPath(textBox2.Text);
-            button1.Enabled = false;
-            button2.Enabled = true;
-            ec.startServer();
+
+
+            try
+            {
+                ec = new ExecuteConsole();
+                Properties.Settings.Default.installPath = textBox1.Text;
+                Properties.Settings.Default.savesPath = textBox2.Text;
+                ec.OnServerStateChanges += Ec_OnServerStateChanges;
+                ec.setInstallPath(textBox1.Text);
+                ec.setSavesPath(textBox2.Text);
+                button1.Enabled = false;
+                button2.Enabled = true;
+                ec.startServer();
+            }
+            catch (Exception Penis)
+            {
+                ServerRunningEventArgs e2 = new ServerRunningEventArgs();
+                e2.running = 2;
+                Ec_OnServerStateChanges(this, e2);
+                MessageBox.Show("No Saves Folder was given. Please enter Saves Folder. \n" + Penis);
+            }
         }
 
         private void Ec_OnServerStateChanges(object sender, ServerRunningEventArgs e)
@@ -70,6 +84,12 @@ namespace OpenRCT2_Autostarter
         private void Form1_Load(object sender, EventArgs e)
         {
             button2.Enabled = false;
+            textBox1.Text = Properties.Settings.Default.installPath;
+            textBox2.Text = Properties.Settings.Default.savesPath;
+            if (textBox1.Text == "")
+            {
+                textBox1.Text = System.IO.Directory.GetCurrentDirectory();
+            }
         }
 
 
