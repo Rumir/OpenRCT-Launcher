@@ -83,6 +83,7 @@ namespace OpenRCT2_Autostarter
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            ;
             button2.Enabled = false;
             textBox1.Text = Properties.Settings.Default.installPath;
             textBox2.Text = Properties.Settings.Default.savesPath;
